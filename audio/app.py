@@ -1,15 +1,13 @@
 import streamlit as st
-import os
-from keras.models import load_model
-import tempfile
 import librosa
 import numpy as np
+from keras.models import load_model
+import tempfile
 
-def file_selector(folder_path='.'):
-    filenames = os.listdir(folder_path)
-    selected_filename = st.selectbox('Select a file', filenames)
-    return os.path.join(folder_path, selected_filename)
+# Load the pre-trained model
+model = load_model('models\model_audio.h5')
 
+# Function to detect fake audio
 def detect_fake(filename):
     sound_signal, sample_rate = librosa.load(filename, res_type="kaiser_fast")
     mfcc_features = librosa.feature.mfcc(y=sound_signal, sr=sample_rate, n_mfcc=40)
@@ -26,17 +24,6 @@ st.set_page_config(page_title="AI Kavach - Deepfake Audio Detection", page_icon=
 st.title("AI Kavach - Deepfake Audio Detection")
 st.write("Upload an audio file, and our model will determine whether it's a deepfake or a real recording.")
 
-# Use the file selector to choose the model file
-model_path = file_selector('models')
-st.write(f'Selected model file: {model_path}')
-
-# Load the selected model
-try:
-    model = load_model(model_path)
-    st.write("Model loaded successfully.")
-except Exception as e:
-    st.error(f"Error loading model: {e}")
-
 uploaded_file = st.file_uploader("Choose an audio file...", type=["wav", "mp3"])
 
 if uploaded_file is not None:
@@ -50,8 +37,7 @@ if uploaded_file is not None:
     st.write("Processing the audio file...")
     
     # Detect if the audio is fake or real
-    try:
-        result = detect_fake(temp_filename)
-        st.write(f"The uploaded audio is classified as: **{result}**")
-    except Exception as e:
-        st.error(f"Error processing audio file: {e}")
+    result = detect_fake(temp_filename)
+    
+    # Display the result
+    st.write(f"The uploaded audio is classified as: **{result}**")
