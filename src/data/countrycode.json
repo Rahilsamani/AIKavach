@@ -1,0 +1,35 @@
+[
+  {
+    "country": "India",
+    "code": "+91"
+  },
+  {
+    "country": "Afghanistan",
+    "code": "+93"
+  },
+  {
+    "country": "Australia",
+    "code": "+61"
+  },
+  {
+    "country": "China",
+    "code": "+86"
+  },
+
+  {
+    "country": "New Zealand",
+    "code": "+64"
+  },
+  {
+    "country": "Pakistan",
+    "code": "+92"
+  },
+  {
+    "country": "South Africa",
+    "code": "+27"
+  },
+  {
+    "country": "Sri Lanka",
+    "code": "+94"
+  }
+]
