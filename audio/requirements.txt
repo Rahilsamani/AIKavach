@@ -1,0 +1,6 @@
+streamlit
+tensorflow==2.12.0
+librosa==0.10.0.post2
+numpy==1.23.5
+soundfile==0.10.3.post1
+numba==0.56.4
