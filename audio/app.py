@@ -5,7 +5,7 @@ from keras.models import load_model
 import tempfile
 
 # Load the pre-trained model
-model = load_model('models/model_audio.h5')
+model = load_model('models\model_audio.h5')
 
 # Function to detect fake audio
 def detect_fake(filename):
